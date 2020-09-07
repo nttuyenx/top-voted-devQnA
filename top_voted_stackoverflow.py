@@ -24,10 +24,23 @@ url = 'https://api.stackexchange.com/2.2/questions'
 
 
 class QuotaOverflow(Exception):
+    """
+    Raise exception if the question_number is greater than 300.
+    """
     pass
 
 
 def get_pagesizes_range(number):
+    """
+    Get page sizes range.
+
+    :param number: the number of top voted questions
+    :type number: int
+    :return: the list of page sizes
+    :rtype: list
+
+    """
+
     result = []
     for _ in range(number // 100):
         result.append(100)
@@ -37,6 +50,18 @@ def get_pagesizes_range(number):
 
 
 def top_questions(number, label):
+    """
+    Get titles and question ids of top voted questions, which are
+    tagged with a keyword on Stack Overflow.
+
+    :param number: the number of top voted questions
+    :type number: int
+    :param label: the tagged keyword of questions
+    :type label: str
+    :return: the list of pairs of title and question id
+    :rtype: list
+    """
+
     pagesizes = get_pagesizes_range(number)
     try:
         top_ques = []
@@ -58,6 +83,15 @@ def top_questions(number, label):
 
 
 def top_answer(question_id):
+    """
+    Get the answer id of the highest voted answer of the question.
+
+    :param question_id: question id
+    :type question_id: str
+    :return: answer id of the highest voted answer
+    :rtype: str
+    """
+
     link = '{}/{}/answers'.format(url, question_id)
     params = {"pagesize": 1,
               "order": "desc",
@@ -72,10 +106,11 @@ def top_answer(question_id):
 
 
 def main():
-    '''
+    """
     Script takes the top ** N ** highest voted question of the tag ** LABEL **
     on stackoverflow.com.
-    '''
+    """
+
     label = args.label
     question_number = args.question_number
     print('Top {} voted questions with tag "{}"'.format(
