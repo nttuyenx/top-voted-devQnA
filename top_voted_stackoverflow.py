@@ -3,8 +3,19 @@ import requests
 import html
 
 parser = argparse.ArgumentParser()
-parser.add_argument('question_number', type=int)
-parser.add_argument('label', type=str)
+
+parser.add_argument(
+    '--question_number',
+    type=int,
+    help="The number of top voted questions"
+)
+
+parser.add_argument(
+    '--label',
+    type=str,
+    help="A keyword or tag of questions on Stack Overflow"
+)
+
 args = parser.parse_args()
 
 session = requests.Session()
