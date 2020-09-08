@@ -10,7 +10,6 @@ The project includes three files:
 2. `utils.py` is where you build core functions.
 3. `README.md` is where you provide information about other files.
 
-
 ## How to run
 - Required flags:
    * `question_number` is number of the top highest questions
@@ -18,6 +17,6 @@ The project includes three files:
 - A sample command:
    * `python3 stackoverflow.py --question_number 10 --label sql`
 - A sample output of
-`python3 stackoverflow.py --question_number 5 --label git`:
-![sample_output](./sample_output.png)
+`python3 stackoverflow.py --question_number 5 --label git` <br>
+![sample_output](./sample_output.png "sample output")
 
