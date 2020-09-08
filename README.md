@@ -4,9 +4,20 @@ know the top highest voted questions on Stack Overflow with a specific
 keyword. This project helps you to that by showing the top highest
 voted questions of a keyword with the highest voted answer on the site.
 
+## Project files
+The project includes three files:
+1. `stackoverflow.py` is the main script.
+2. `utils.py` is where you build core functions.
+3. `README.md` is where you provide information about other files.
+
+
 ## How to run
-- Run the command with two arguments `N` and `LABEL`:
-  `python3 top_voted_stackoverflow.py N LABEL` where
-   * `N` is number of the top highest questions
-   * `LABEL` is the tag
-- A sample command: `python3 top_voted_stackoverflow.py 10 sql`
+- Required flags:
+   * `question_number` is number of the top highest questions
+   * `label` is the keyword
+- A sample command:
+   * `python3 stackoverflow.py --question_number 10 --label sql`
+- A sample output of
+`python3 stackoverflow.py --question_number 5 --label git`:
+![sample_output](./sample_output.png)
+
