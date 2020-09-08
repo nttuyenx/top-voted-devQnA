@@ -18,5 +18,5 @@ The project includes three files:
    * `python3 stackoverflow.py --question_number 10 --label sql`
 - A sample output of
 `python3 stackoverflow.py --question_number 5 --label git` <br>
-![sample_output](./sample_output.png "sample output")
+![output_sample](./output_sample.png "output sample")
 
