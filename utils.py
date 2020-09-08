@@ -1,27 +1,4 @@
-#!/usr/bin/env python3
-import argparse
-import requests
 import html
-
-parser = argparse.ArgumentParser()
-
-parser.add_argument(
-    '--question_number',
-    type=int,
-    help="The number of top voted questions"
-)
-
-parser.add_argument(
-    '--label',
-    type=str,
-    help="A keyword or tag of questions on Stack Overflow"
-)
-
-args = parser.parse_args()
-
-session = requests.Session()
-
-url = 'https://api.stackexchange.com/2.2/questions'
 
 
 class QuotaOverflow(Exception):
@@ -50,7 +27,7 @@ def get_pagesizes_range(number):
     return result
 
 
-def top_questions(number, label):
+def top_questions(number, label, url, session):
     """
     Get titles and question ids of top voted questions, which are
     tagged with a keyword on Stack Overflow.
@@ -83,7 +60,7 @@ def top_questions(number, label):
         raise QuotaOverflow("only make 300 requests per day")
 
 
-def top_answer(question_id):
+def top_answer(question_id, url, session):
     """
     Get the answer id of the highest voted answer of the question.
 
@@ -104,29 +81,3 @@ def top_answer(question_id):
         return answer
     except Exception:
         raise QuotaOverflow("only make 300 requests per day")
-
-
-def main():
-    """
-    Script takes the top ** N ** highest voted question of the tag ** LABEL **
-    on stackoverflow.com.
-    """
-
-    label = args.label
-    question_number = args.question_number
-    print('Top {} voted questions with tag "{}"'.format(
-        question_number, label))
-
-    if question_number >= 300:
-        print("only make 300 requests per day")
-        return
-
-    questions = top_questions(question_number, label)
-    for title, question_id in questions:
-        answer_id = top_answer(question_id)
-        link_to_answer = 'https://stackoverflow.com/a/{}'.format(answer_id)
-        print(title + "\n", "\tHighest voted answer:", link_to_answer)
-
-
-if __name__ == "__main__":
-    main()
