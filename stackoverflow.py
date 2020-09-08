@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import argparse
 import requests
-from top_voted_stackoverflow import top_questions, top_answer
+from utils import top_questions, top_answer
 
 
 parser = argparse.ArgumentParser()
